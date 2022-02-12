@@ -18,7 +18,8 @@ keyboard.add_button("Все команды", VkKeyboardColor.POSITIVE)
 def send_some_message(id, some_text, keyboard=None):
     post = {"user_id":id,
             "message":some_text,
-            "random_id":0}
+            "random_id": 0
+            }
     if keyboard != None:
         post[keyboard] = keyboard.get_keyboard()
     else:
