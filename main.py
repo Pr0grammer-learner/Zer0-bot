@@ -15,10 +15,9 @@ for event in longpool.listen():
         if event.to_me:
             message = event.text.lower()
             id = event.user_id
-            for word in privet:
-                if message == word:
+            if message in privet:
                     send_some_message(id,"Привет, меня зовут Zer0 и я бот, мой создатель (Тимофей) пока ничему меня не научил! Жди обновлений, они наверное будут)")
-            if message != word:
+            else:
                 send_some_message(id,"Привет, я пока не знаю как на это реагировать! Скоро такой функционал появится)")
 
 
