@@ -18,4 +18,8 @@ for event in longpool.listen():
             for word in privet:
                 if message == word:
                     send_some_message(id,"Привет, меня зовут Zer0 и я бот, мой создатель (Тимофей) пока ничему меня не научил! Жди обновлений, они наверное будут)")
+            if message != word:
+                send_some_message(id,
+                                  "Привет, Ты чёрт!")
+
 
