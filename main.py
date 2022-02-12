@@ -16,13 +16,10 @@ def send_some_message(id, some_text, keyboard=None):
             "random_id": 0
             }
     if keyboard != None:
-        post[keyboard1] = keyboard1.get_keyboard()
+        post[keyboard] = keyboard.get_keyboard()
     else:
         post = post
     vk_session.method("messages.send",post)
-
-keyboard = VkKeyboard(one_time=False)
-keyboard1 = keyboard.add_button("Все команды", VkKeyboardColor.PRIMARY)
 
 for event in longpool.listen():
     if event.type == VkEventType.MESSAGE_NEW:
@@ -30,9 +27,13 @@ for event in longpool.listen():
             message = event.text.lower()
             id = event.user_id
             if message in privet:
-                    send_some_message(id,greetings,keyboard1)
+                    keyboard = VkKeyboard(one_time=False)
+                    keyboard.add_button("Все команды", VkKeyboardColor.PRIMARY)
+                    send_some_message(id,greetings,keyboard)
             else:
-                send_some_message(id,unknown,keyboard1)
+                keyboard = VkKeyboard(one_time=False)
+                keyboard.add_button("Все команды", VkKeyboardColor.PRIMARY)
+                send_some_message(id,unknown,keyboard)
 
 
 
