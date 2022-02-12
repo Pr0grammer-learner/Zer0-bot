@@ -12,7 +12,7 @@ unknown = "Привет, я пока не знаю как на это реаги
 
 
 keyboard = VkKeyboard()
-keyboard.add_button("Все команды", VkKeyboardColor.POSITIVE)
+keyboard1 = keyboard.add_button("Все команды", VkKeyboardColor.PRIMARY)
 
 
 def send_some_message(id, some_text, keyboard=None):
@@ -32,9 +32,9 @@ for event in longpool.listen():
             message = event.text.lower()
             id = event.user_id
             if message in privet:
-                    send_some_message(id,greetings,keyboard)
+                    send_some_message(id,greetings,keyboard1)
             else:
-                send_some_message(id,unknown,keyboard)
+                send_some_message(id,unknown,keyboard1)
 
 
 
