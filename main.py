@@ -7,10 +7,13 @@ session_api = vk_session.get_api()
 longpool = VkLongPoll(vk_session)
 
 privet = ["привет","hi","здарова","ку","приветствую","доброе утро","добрый день","хай","hello","приветик","приветос","здравствуйте","здравствуй"]
+greetings = "Привет, меня зовут Zer0 и я бот, мой создатель (Тимофей) пока ничему меня не научил! Жди обновлений, они наверное будут)"
+unknown = "Привет, я пока не знаю как на это реагировать! Скоро такой функционал появится)"
 
-def button_create():
-    keyboard = VkKeyboard()
-    keyboard.add_button("Все команды", VkKeyboardColor.POSITIVE)
+
+keyboard = VkKeyboard()
+keyboard.add_button("Все команды", VkKeyboardColor.POSITIVE)
+
 
 def send_some_message(id, some_text, keyboard = None):
     post = {"user_id":id,
@@ -28,11 +31,9 @@ for event in longpool.listen():
             message = event.text.lower()
             id = event.user_id
             if message in privet:
-                    button_create()
-                    send_some_message(id,"Привет, меня зовут Zer0 и я бот, мой создатель (Тимофей) пока ничему меня не научил! Жди обновлений, они наверное будут)")
+                    send_some_message(id,greetings,keyboard)
             else:
-                button_create()
-                send_some_message(id,"Привет, я пока не знаю как на это реагировать! Скоро такой функционал появится)")
+                send_some_message(id,unknown,keyboard)
 
 
 
